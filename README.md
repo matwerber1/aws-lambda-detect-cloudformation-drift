@@ -5,6 +5,11 @@ This project deploys a Lambda that triggers the DetectStackDrift API on each Clo
 As of this writing (Nov 19 2018), the AWS Lambda runtime does not yet include the updated AWS Javascript SDK that supports DetectStackDrift.
 Therefore, before deploying this project, you must locally install the latest SDK and include it as part of your upload artifacts; (step 3, below). 
 
+# Enhancements
+
+I plan to add a second function that also periodically identifies stacks that have drift and then sends an SNS alert (or maybe just an empty function
+so you can insert XYZ task).
+
 # Deployment
 
 1. Clone the repository
