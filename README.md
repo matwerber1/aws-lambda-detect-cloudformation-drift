@@ -1,5 +1,9 @@
 # aws-lambda-detect-cloudformation-drift
 
+AWS CloudFormation added support to detect stack drift in late October 2018. This feature provides a detailed explanation of what, if anything, 
+has been modified for a stack resource outside of the template itself. Currently, the drift detection applies to the most common, but not all, 
+AWS resources.
+
 This project deploys a Lambda that triggers the DetectStackDrift API on each CloudFormation stack once every 24 hours via a CloudWatch Event. 
 
 As of this writing (Nov 19 2018), the AWS Lambda runtime does not yet include the updated AWS Javascript SDK that supports DetectStackDrift.
