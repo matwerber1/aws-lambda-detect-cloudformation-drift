@@ -1,0 +1,29 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+
+Resources:
+
+  Function:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Description: 'Trigger the CloudFormation DetectStackDrift API on all CloudFormation stacks.'
+      Handler: index.handler
+      Runtime: nodejs8.10
+      CodeUri: ./src
+      MemorySize: 128
+      Timeout: 60
+      Events:
+        Timer:
+          Type: Schedule
+          Properties:
+            Schedule: rate(24 hours)
+      Policies:
+        - AWSLambdaExecute # Managed Policy
+        - Version: '2012-10-17' # Policy Document
+          Statement:
+          - Effect: Allow
+            Action:
+            - 'cloudformation:Describe*'
+            - 'cloudformation:Detect*'
+            - 'cloudformation:List*'
+            Resource: '*'
